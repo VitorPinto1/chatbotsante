@@ -1,5 +1,5 @@
 
-
+""""
 
 reflections = {
     "je suis": "vous êtes",
@@ -56,13 +56,4 @@ chatbot_flow = {
 
 
 
-training_data = [
-    ("bonjour", "greet"),
-    ("salut", "greet"),
-    ("hello", "greet"),
-    ("quels sont les symptômes de la grippe ?", "ask_flu_symptoms"),
-    ("comment traiter la grippe ?", "ask_flu_treatment"),
-    ("j'ai une blessure", "ask_injury"),
-    ("je me suis coupé", "ask_injury"),
-    ("au revoir", "goodbye"),
-]
+"""
