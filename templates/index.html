@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot</title>
+</head>
+<body>
+  <h1>Chatbot</h1>
+  <div id="chatbox">
+    <!-- Les messages du chatbot et de l'utilisateur s'afficheront ici -->
+  </div>
+  <input type="text" id="messageInput" placeholder="Tapez votre message...">
+  <button onclick="sendMessage()">Envoyer</button>
+
+  <script>
+    function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      fetch('http://127.0.0.1:5000/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: message
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const chatbox = document.getElementById('chatbox');
+        chatbox.innerHTML += `<p><strong>Vous:</strong> ${message}</p>`;
+        chatbox.innerHTML += `<p><strong>Robert:</strong> ${data.response}</p>`;
+        document.getElementById('messageInput').value = '';
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+      });
+    }
+  </script>
+</body>
+</html>
